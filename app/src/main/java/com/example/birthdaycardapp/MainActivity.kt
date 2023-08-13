@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.sp
 import com.example.birthdaycardapp.ui.theme.BirthdayCardAppTheme
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     /*modifier = Modifier.fillMaxSize(),*/
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingImage("James", from = "~ From Irfando")
+                    GreetingImage(getString(R.string.james), getString(R.string.from_irfando))
                 }
             }
         }
@@ -58,7 +60,7 @@ fun GreetingText(name: String, from : String, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(top = 16.dp)
                 .padding(end = 16.dp)
-                .align(alignment = Alignment.End)
+                .align(alignment = Alignment.CenterHorizontally)
         )
     }
 }
@@ -66,19 +68,23 @@ fun GreetingText(name: String, from : String, modifier: Modifier = Modifier) {
 /*#Ketiga*/
 /*menambahkan gambar secara composable*/
 @Composable
-fun GreetingImage(name: String, from: String, modifier: Modifier = Modifier) {
+fun GreetingImage(name: String, from: String) {
     /*cara memanggil gambar*/
     //Step nextcreate a box to overlap image and texts
     val image = painterResource(R.drawable.androidparty)
     Box {
         Image(
             painter = image,
-            contentDescription = null
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 0.5F
         )
         GreetingText(
                 name = name,
                 from = from,
-                modifier = Modifier.fillMaxSize().padding(0.dp)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(0.dp)
         )
     }
 }
@@ -88,6 +94,7 @@ fun GreetingImage(name: String, from: String, modifier: Modifier = Modifier) {
 @Composable
 fun BirthdayCardPreview() {
     BirthdayCardAppTheme {
-        GreetingImage("James", from = "~ From Irfando")
+        /*GreetingImage("James", from = "~ From Irfando")*/
+        GreetingImage(stringResource(R.string.james), stringResource(R.string.from_irfando))
     }
 }

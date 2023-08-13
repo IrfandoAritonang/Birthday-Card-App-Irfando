@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Birthday Card App</string>
+    <string name="james">James</string>
+    <string name="from_irfando">~ From Irfando</string>
 </resources>
